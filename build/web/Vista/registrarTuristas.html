@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>Registrar turista</div>
+        <div>
+            <div>
+                       <form action="Controlador/turistas.java" method="post" onsubmit="return validarRegistro()">
+                            <div class="nombre">
+                                <label for="nombre">Nombres:</label>
+                                <input type="text" name="nombre" id="nombre">
+                            </div>
+                            <div class="apellidos">
+                                <label for="apellido">Apellidos:</label>
+                                <input type="text" name="apellidos" id="apellidos">
+                            </div>
+                            <div class="documento_tipo">
+                                <div class="documento">
+                                    <label for="documento" class="documento2" >Documento:</label>
+                                    <input type="number" name="documento" id="documento" class="documento1">
+                                </div>
+                                <div class="tipo">
+                                    <select name="tipo" id="tipo">
+                                        <option value="">Tipo de documento</option>
+                                        <option value="CC">Cédula de ciudadania</option>
+                                        <option value="CE">Cédula de extranjería</option>
+                                        <option value="P">Pasaporte</option>
+                                        <option value="TI">Tarjeta de identidad</option>
+                                        <option value="O">Otro</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="nacimiento-sexo">
+                                <label for="nacimiento" class="nacimiento1">Fecha de nacimiento:</label>
+                                <div class="nacimiento">
+                                    <input type="date" name="nacimiento" id="nacimiento">
+                                </div>
+                                <div class="sexo">
+                                    <select name="sexo" id="sexo">
+                                        <option value="">Sexo</option>
+                                        <option value="F">Femenino</option>
+                                        <option value="M">Masculino</option>
+                                        <option value="N">Prefiero no decirlo</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="telefono">
+                                <label for="telefono">Telefono:</label>
+                                <input type="number" class="telefono1" name="telefono" id="telefono">
+                            </div>
+                            <div class="correo">
+                                <label for="correo">Correo:</label>
+                                <input type="email" name="correo" id="correo">
+                            </div>
+                            <div class="contrasena">
+                                <label for="contrasena">Contraseña:</label>
+                                <input type="password" name="contrasena" id="contrasena">
+                            </div>
+                            <div class="confirmarContrasena">
+                                <label for="confirmarContrasena">Confirmar contraseña:</label>
+                                <input type="password" name="confirmarContrasena" id="confirmarContrasena">
+                            </div>
+                            <div class="ofertas">
+                                <input type="checkbox" name="ofertas" id="ofertas">
+                                <label for="ofertas" class="ofertas1">Deseo recibir ofertas por correo</label>
+                            </div>
+                            <div class="politica">
+                                <input type="checkbox" name="politica" id="politica">
+                                <label for="politica" class="politica1">Acepto politica y tratamiento de mis datos</label>
+                            </div>
+                            <div class="boton">
+                                <button type="submit" name="botonRegistrarse" id="botonRegistrarse">Registrarse</button>
+                            </div>
+                            <div>
+                                <p>Si ya tienes una cuenta puedes dar click <a href="/iniciarSesion">aqui</a> para iniciar sesión.</p>
+                            </div>
+                        </form>
+       
+            </div>
+        </div>
+    </body>
+</html>
