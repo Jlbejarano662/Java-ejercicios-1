@@ -16,17 +16,18 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        <title>Turistas</title>
+    <link rel="stylesheet" type="text/css" href="CSS/estilos.css">
+    <title>Turistas</title>
     </head>
     <body>
-        <<section>
+        <section>
             <div class='container'>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-10">
+                <div class="col-sm">
                     <div class="align-items-center text-center ">
                         <h1> Turistas</h1>
                     </div><br>
-                    <table class="table table-striped">
+                    <div class="table-responsive">
+                        <table class="table table-striped ">
                         <thead class="thead-dark">
                             <tr>
                                 <th>ID</th>
@@ -55,16 +56,15 @@
                                 <td><%= turista.getTipoDocumento() %></td>
                                 <td><%= turista.getFrecuenciaViaje() %></td>
                                 <td>
-                                    <div class="row">
-                                        <a href="Controlador?accion=editTuristas" class="btn btn-primary">&nbsp; Editar&nbsp;</a>
-                                        <a href="Controlador?accion=deleteTuristas"class="btn btn-danger">Eliminar</a>
-                                    </div>
-
+                                    <a href="Controlador?accion=editTuristas" class="btn btn-primary ">&nbsp; Editar&nbsp;</a>
+                                    <a href="Controlador?accion=deleteTuristas"class="btn btn-danger ">Eliminar</a>
                                 </td>
                             </tr>
                             <%}%>
                         </tbody>
                     </table>
+                    </div>
+                    
                     <div>
                         <div class="row">
                             <div class="col-sm-4">
@@ -77,7 +77,6 @@
                         </div>
                     </div>
      </div>
-                <div class="col-sm-2"></div>
                                         
             </div>
         </section>

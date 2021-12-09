@@ -60,8 +60,17 @@ public class TuristasDAO implements CrudTuristas{
     }
 
     @Override
-    public boolean add(Turistas Turista) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean add(Turistas turista) {
+        String sql="insert into turistas (NombreCompleto, FechaNacimiento, Docmuento, TipoDocumento, FrecuenciaViaje) values ('"+turista.getNombreCompleto()+"','"+turista.getFechaNacimiento()+"','"+turista.getDocumento()+"','"+turista.getTipoDocumento()+"','"+turista.getFrecuenciaViaje()+"')";
+        try{
+            con=cn.Conectar();
+            ps=con.prepareStatement(sql);
+            bool=ps.executeUpdate();
+        } catch (SQLException e){
+            System.out.println(e);
+        }
+       
+        return false;
     }
 
     @Override

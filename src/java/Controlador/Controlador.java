@@ -4,6 +4,8 @@
  */
 package Controlador;
 
+import Modelo.Turistas;
+import ModeloDAO.TuristasDAO;
 import java.io.PrintWriter; 
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -30,6 +32,9 @@ public class Controlador extends HttpServlet {
     String addTuristas="Vista/addTuristas.jsp";
     String editTuristas="Vista/editTuristas.jsp";
     String deleteTuristas="Vista/deleteTuristas.jsp";
+    Turistas turista = new Turistas();
+    TuristasDAO turistaDAO= new TuristasDAO();
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -59,6 +64,20 @@ public class Controlador extends HttpServlet {
         else if(action.equalsIgnoreCase("addTuristas")){
            acceso=addTuristas; 
         }
+        else if(action.equalsIgnoreCase("Agregar")){
+           String NombreCompleto =request.getParameter("NombreCompleto");
+           String FechaNacimiento =request.getParameter("FechaNacimiento");
+           int Documento =Integer.parseInt(request.getParameter("Documento"));
+           String TipoDocumento =request.getParameter("TipoDocumento");
+           int FrecuenciaViaje =Integer.parseInt(request.getParameter("FrecuenciaViaje"));
+           turista.setNombreCompleto(NombreCompleto);
+           turista.setFechaNacimiento(FechaNacimiento);
+           turista.setDocumento(Documento);
+           turista.setTipoDocumento(TipoDocumento);
+           turista.setFrecuenciaViaje(FrecuenciaViaje);
+           turistaDAO.add(turista);
+           acceso=listarTuristas;
+        }        
         else if(action.equalsIgnoreCase("editTuristas")){
            acceso=editTuristas; 
         }
