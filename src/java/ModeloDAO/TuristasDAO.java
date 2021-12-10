@@ -24,7 +24,7 @@ public class TuristasDAO implements CrudTuristas{
     Connection con;
     PreparedStatement ps;
     ResultSet rs;
-    Turistas turistas = new Turistas();
+    Turistas turista = new Turistas();
     
     
     
@@ -37,14 +37,14 @@ public class TuristasDAO implements CrudTuristas{
             ps=con.prepareStatement(sql);
             rs=ps.executeQuery();
             while (rs.next()){
-                Turistas turista= new Turistas();
-                turista.setId(rs.getInt("ID"));
-                turista.setNombreCompleto(rs.getString("NombreCompleto"));
-                turista.setFechaNacimiento(rs.getString("FechaNacimiento"));
-                turista.setDocumento(rs.getInt("Documento"));
-                turista.setTipoDocumento(rs.getString("TipoDocumento"));
-                turista.setFrecuenciaViaje(rs.getInt("FrecuenciaViaje"));
-                list.add(turista);
+                Turistas turistas = new Turistas();
+                turistas.setId(rs.getInt("Id"));
+                turistas.setNombreCompleto(rs.getString("NombreCompleto"));
+                turistas.setFechaNacimiento(rs.getString("FechaNacimiento"));
+                turistas.setDocumento(rs.getInt("Documento"));
+                turistas.setTipoDocumento(rs.getString("TipoDocumento"));
+                turistas.setFrecuenciaViaje(rs.getInt("FrecuenciaViaje"));
+                list.add(turistas);
             }
         } catch ( SQLException e){
             System.out.println(e);
@@ -56,16 +56,32 @@ public class TuristasDAO implements CrudTuristas{
 
     @Override
     public Turistas list(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql= "select*from turistas where ID="+id;
+        try{
+            con =cn.Conectar();
+            ps=con.prepareStatement(sql);
+            rs=ps.executeQuery();
+            while (rs.next()){
+                turista.setId(rs.getInt("ID"));
+                turista.setNombreCompleto(rs.getString("NombreCompleto"));
+                turista.setFechaNacimiento(rs.getString("FechaNacimiento"));
+                turista.setDocumento(rs.getInt("Documento"));
+                turista.setTipoDocumento(rs.getString("TipoDocumento"));
+                turista.setFrecuenciaViaje(rs.getInt("FrecuenciaViaje"));
+            }
+        } catch ( SQLException e){
+            System.out.println(e);
+        }
+        return turista;    
     }
 
     @Override
     public boolean add(Turistas turista) {
-        String sql="insert into turistas (NombreCompleto, FechaNacimiento, Docmuento, TipoDocumento, FrecuenciaViaje) values ('"+turista.getNombreCompleto()+"','"+turista.getFechaNacimiento()+"','"+turista.getDocumento()+"','"+turista.getTipoDocumento()+"','"+turista.getFrecuenciaViaje()+"')";
+        String sql="insert into turistas (NombreCompleto, FechaNacimiento, Documento, TipoDocumento, FrecuenciaViaje) values ('"+turista.getNombreCompleto()+"','"+turista.getFechaNacimiento()+"','"+turista.getDocumento()+"','"+turista.getTipoDocumento()+"','"+turista.getFrecuenciaViaje()+"')";
         try{
             con=cn.Conectar();
             ps=con.prepareStatement(sql);
-            bool=ps.executeUpdate();
+            ps.executeUpdate();
         } catch (SQLException e){
             System.out.println(e);
         }
@@ -75,12 +91,32 @@ public class TuristasDAO implements CrudTuristas{
 
     @Override
     public boolean edit(Turistas Turista) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql="update turistas set NombreCompleto='"+Turista.getNombreCompleto()+"', FechaNacimiento ='"+Turista.getFechaNacimiento()+"', Documento='"+Turista.getDocumento()+"', TipoDocumento='"+Turista.getTipoDocumento()+"', FrecuenciaViaje='"+Turista.getFrecuenciaViaje()+"' where ID='"+Turista.getId()+"'";
+        try{
+            con=cn.Conectar();
+            ps=con.prepareStatement(sql);
+            System.out.println(sql);
+            ps.executeUpdate();
+        } catch (SQLException e){
+            System.out.println(e);
+        }
+       
+        return false;    
     }
 
     @Override
     public boolean delete(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql="delete from turistas where ID="+id;
+        try{
+            con=cn.Conectar();
+            ps=con.prepareStatement(sql);
+            System.out.println(sql);
+            ps.executeUpdate();
+        } catch (SQLException e){
+            System.out.println(e);
+        }
+       
+        return false;        
     }
     
 }

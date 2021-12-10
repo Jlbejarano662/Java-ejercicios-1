@@ -18,12 +18,11 @@
 
         <section>
             <div class="container" >
-                <div class="col-sm-2"></div>
-                <div class="col-sm-8 registro"   >
+                <div class="col-sm"   >
                     <div class="align-items-center text-center ">
                         <h1 >Agregar Turista</h1>
                     </div><br>
-                    <form action="Controlador">
+                    <form action="Controlador" method="post">
                         <input type="text" class="form-control form-control-sm" name="NombreCompleto" id="NombreCompleto" placeholder="Nombre completo"><br>
                         <div class="row">
                             <div class="col-sm-6">
@@ -52,14 +51,13 @@
                             <div class="col-sm-4">
                             </div>
                             <div class="col-sm-4">
-                                <input type="submit" name="accion"  value="Agregar" class="btn btn-danger btn-block"><br>
+                                <input type="submit" name="accion"  value="Agregar Turista" class="btn btn-success btn-block"><br>
                             </div>
                             <div class="col-sm-4">
                             </div>
                         </div>
                     </form>
                 </div>
-                <div class="col-sm-2"></div>
             </div>
         </section>
     </body>

@@ -11,4 +11,33 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     color: white;
     text-align: center;
 }
+body{
+    background-image: url("../IMG/fondo.jpg"); 
+    background-size: cover;
 
+
+}
+.container{
+    color: #445849f5;
+    background-size: 100%;
+    align-self: center;
+    opacity: 1;
+    background-color: #ffffffc7;
+    align-items: center;
+    margin-top: 3%;
+    padding: 3%;
+    border-radius: 10px;
+}
+
+.botonesIndex{
+    padding: 10px;
+}
+.botonesTabla{
+    margin: 2px 0px;
+}
+.table-responsive{
+    border-radius: 10px;
+}
+.tablaEncabezado{
+    text-align: center;
+}
