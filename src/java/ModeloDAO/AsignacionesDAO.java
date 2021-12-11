@@ -1,27 +1,23 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package ModeloDAO;
 
-import Interfaces.CrudCiudades;
+import Interfaces.CrudAsignaciones;
 import Modelo.Ciudades;
 import config.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 /**
  *
- * @author Admonsis
+ * @author jazmi
  */
-
-public class CiudadesDAO implements CrudCiudades{
-    
+public class AsignacionesDAO implements CrudAsignaciones {
     Conexion cn=new Conexion();
     Connection con;
     PreparedStatement ps;
@@ -32,7 +28,7 @@ public class CiudadesDAO implements CrudCiudades{
     
     @Override
     public List listar(){
-        ArrayList<Ciudades>list=new ArrayList<>();
+        ArrayList<Asignaciones>list=new ArrayList<>();
         String sql= "select*from ciudad";
         try{
             con =cn.Conectar();

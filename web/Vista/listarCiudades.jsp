@@ -68,7 +68,7 @@
                             <div class="col-sm-4">
                             </div>
                             <div class="col-sm-4">
-                               <a href="Controlador?accion=addTuristas" class="btn btn-success btn-block">Agregar ciudad</a>
+                               <a href="Controlador?accion=addCiudades" class="btn btn-success btn-block">Agregar ciudad</a>
                             </div>
                             <div class="col-sm-4">
                             </div>

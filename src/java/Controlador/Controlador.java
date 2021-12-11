@@ -93,7 +93,7 @@ public class Controlador extends HttpServlet {
         }      
         else if(action.equalsIgnoreCase("deleteCiudades")){
             int Id =Integer.parseInt(request.getParameter("Id"));
-            turistaDAO.delete(Id);
+            ciudadDAO.delete(Id);
             acceso=listarCiudades; 
         }        
         RequestDispatcher Vista=request.getRequestDispatcher(acceso);
@@ -135,6 +135,32 @@ public class Controlador extends HttpServlet {
            turista.setFrecuenciaViaje(FrecuenciaViaje);
            turistaDAO.edit(turista);
            acceso=listarTuristas;
+        }
+        else if(action.equalsIgnoreCase("Agregar Ciudad")){
+           String Nombre =request.getParameter("Nombre");
+           int CantidadHabitantes =Integer.parseInt(request.getParameter("CantidadHabitantes"));
+           String SitioTuristico =request.getParameter("SitioTuristico");
+           String HotelReservado =request.getParameter("HotelReservado");
+           ciudad.setNombre(Nombre);
+           ciudad.setCantidadHabitantes(CantidadHabitantes);
+           ciudad.setSitioTuristico(SitioTuristico);
+           ciudad.setHotelReservado(HotelReservado);
+           ciudadDAO.add(ciudad);
+           acceso=listarCiudades;
+        }        
+        else if(action.equalsIgnoreCase("Editar Ciudad")){
+           int Id=Integer.parseInt(request.getParameter("Id"));
+           String Nombre =request.getParameter("Nombre");
+           int CantidadHabitantes =Integer.parseInt(request.getParameter("CantidadHabitantes"));
+           String SitioTuristico =request.getParameter("SitioTuristico");
+           String HotelReservado =request.getParameter("HotelReservado");
+           ciudad.setId(Id);
+           ciudad.setNombre(Nombre);
+           ciudad.setCantidadHabitantes(CantidadHabitantes);
+           ciudad.setSitioTuristico(SitioTuristico);
+           ciudad.setHotelReservado(HotelReservado);
+           ciudadDAO.edit(ciudad);
+           acceso=listarCiudades;
         }        
         RequestDispatcher Vista=request.getRequestDispatcher(acceso);
         Vista.forward(request, response);
