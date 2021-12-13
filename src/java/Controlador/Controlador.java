@@ -4,8 +4,10 @@
  */
 package Controlador;
 
+import Modelo.Asignaciones;
 import Modelo.Ciudades;
 import Modelo.Turistas;
+import ModeloDAO.AsignacionesDAO;
 import ModeloDAO.CiudadesDAO;
 import ModeloDAO.TuristasDAO;
 import java.io.PrintWriter; 
@@ -42,7 +44,16 @@ public class Controlador extends HttpServlet {
     String editCiudades="Vista/editCiudades.jsp";
     String deleteCiudades="Vista/deleteCiudades.jsp";
     Ciudades ciudad = new Ciudades();
-    CiudadesDAO ciudadDAO= new CiudadesDAO();    
+    CiudadesDAO ciudadDAO= new CiudadesDAO();
+
+
+    String listarAsignacionesTurista="Vista/listarAsignacionesTurista.jsp";
+    String listarAsignacionesCiudad="Vista/listarAsignacionesCiudad.jsp";
+    String editAsignaciones="Vista/editAsignaciones.jsp";
+    String addAsignaciones="Vista/addAsignaciones.jsp";
+    Asignaciones asignacion = new Asignaciones();
+    AsignacionesDAO asignacionDAO= new AsignacionesDAO(); 
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -95,7 +106,15 @@ public class Controlador extends HttpServlet {
             int Id =Integer.parseInt(request.getParameter("Id"));
             ciudadDAO.delete(Id);
             acceso=listarCiudades; 
-        }        
+        }  
+        else if(action.equalsIgnoreCase("listarAsignacionesTuristas")){
+           request.setAttribute("Id",request.getParameter("Id"));
+           acceso=listarAsignacionesTurista;
+        }
+        else if(action.equalsIgnoreCase("addAsignaciones")){
+           request.setAttribute("IdTurista",request.getParameter("IdTurista"));           
+           acceso=addAsignaciones; 
+        }         
         RequestDispatcher Vista=request.getRequestDispatcher(acceso);
         Vista.forward(request, response);
     }
@@ -161,7 +180,7 @@ public class Controlador extends HttpServlet {
            ciudad.setHotelReservado(HotelReservado);
            ciudadDAO.edit(ciudad);
            acceso=listarCiudades;
-        }        
+        }       
         RequestDispatcher Vista=request.getRequestDispatcher(acceso);
         Vista.forward(request, response);
     }
