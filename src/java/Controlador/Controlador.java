@@ -114,7 +114,17 @@ public class Controlador extends HttpServlet {
         else if(action.equalsIgnoreCase("addAsignaciones")){
            request.setAttribute("IdTurista",request.getParameter("IdTurista"));           
            acceso=addAsignaciones; 
-        }         
+        }
+        else if(action.equalsIgnoreCase("editAsignaciones")){
+           request.setAttribute("Id",request.getParameter("Id"));           
+           acceso=editAsignaciones; 
+        }
+        else if(action.equalsIgnoreCase("deleteAsignaciones")){
+           request.setAttribute("Id",request.getParameter("Id"));           
+            int Id =Integer.parseInt(request.getParameter("Id"));
+            asignacionDAO.delete(Id);
+            acceso=listarAsignacionesTurista; 
+        }        
         RequestDispatcher Vista=request.getRequestDispatcher(acceso);
         Vista.forward(request, response);
     }
@@ -180,7 +190,41 @@ public class Controlador extends HttpServlet {
            ciudad.setHotelReservado(HotelReservado);
            ciudadDAO.edit(ciudad);
            acceso=listarCiudades;
-        }       
+        }
+        else if(action.equalsIgnoreCase("Agregar viaje")){
+           int IdTurista=Integer.parseInt(request.getParameter("IdTurista"));
+           int IdCiudad=Integer.parseInt(request.getParameter("IdCiudad"));
+           double PresupuestoViaje=Double.parseDouble(request.getParameter("IdCiudad"));
+           String Fecha =request.getParameter("Fecha");
+           boolean UsaTarjeta =Boolean.parseBoolean(request.getParameter("UsaTarjeta"));
+           asignacion.setIdTurista(IdTurista);
+           asignacion.setIdCiudad(IdCiudad);
+           asignacion.setPresupuestoViaje(PresupuestoViaje);
+           asignacion.setFecha(Fecha);
+           asignacion.setUsaTarjeta(UsaTarjeta);
+           String mensaje=asignacionDAO.add(asignacion);
+           request.setAttribute("Id",request.getParameter("IdTurista"));
+           request.setAttribute("mensaje",mensaje);
+           acceso=listarAsignacionesTurista;
+        }
+        else if(action.equalsIgnoreCase("Editar viaje")){
+           int Id=Integer.parseInt(request.getParameter("Id"));
+           int IdTurista=Integer.parseInt(request.getParameter("IdTurista"));
+           int IdCiudad=Integer.parseInt(request.getParameter("IdCiudad"));
+           double PresupuestoViaje=Double.parseDouble(request.getParameter("IdCiudad"));
+           String Fecha =request.getParameter("Fecha");
+           boolean UsaTarjeta =Boolean.parseBoolean(request.getParameter("UsaTarjeta"));
+           asignacion.setId(Id);
+           asignacion.setIdTurista(IdTurista);
+           asignacion.setIdCiudad(IdCiudad);
+           asignacion.setPresupuestoViaje(PresupuestoViaje);
+           asignacion.setFecha(Fecha);
+           asignacion.setUsaTarjeta(UsaTarjeta);
+           String mensaje=asignacionDAO.edit(asignacion);
+           request.setAttribute("Id",request.getParameter("IdTurista"));
+           request.setAttribute("mensaje",mensaje);
+           acceso=listarAsignacionesTurista;            
+        }        
         RequestDispatcher Vista=request.getRequestDispatcher(acceso);
         Vista.forward(request, response);
     }

@@ -55,32 +55,136 @@ public class AsignacionesDAO implements CrudAsignaciones{
     }
 
     @Override
-    public boolean add (Asignaciones Asignacion) {
-        String sql="insert into asignaciones (IdTurista, IdCiudad, PresupuestoViaje, UsaTarjeta, Fecha) values ('"+Asignacion.getIdTurista()+"','"+Asignacion.getIdCiudad()+"','"+Asignacion.getPresupuestoViaje()+"','"+Asignacion.getFecha()+"')";
+    public String add (Asignaciones Asignacion) {
+        int resultado;
+        String mensaje ="";
+        String sql="select count(*) from asignaciones where Fecha='"+Asignacion.getFecha()+"'";
+        con=cn.Conectar();
         try{
-            con=cn.Conectar();
             ps=con.prepareStatement(sql);
-            ps.executeUpdate();
+            rs=ps.executeQuery(sql);
+            while (rs.next()){
+                resultado=rs.getInt("count(*)");
+                System.out.println(resultado);
+                if(resultado<=5){
+                    sql="select count(*) from asignaciones where Fecha='"+Asignacion.getFecha()+"' and IdTurista='"+Asignacion.getIdTurista()+"'and IdCiudad='"+Asignacion.getIdCiudad()+"'";
+                    //System.out.println(sql);
+                    try{
+                        ps=con.prepareStatement(sql);
+                        rs=ps.executeQuery(sql);
+                        while (rs.next()){
+                            resultado=rs.getInt("count(*)");
+                            System.out.println(resultado);
+                            if(resultado==1){
+                                System.out.println("Ya se ha realizado esta reserva");
+                                mensaje= "Ya se ha realizado esta reserva";
+                            }else{
+                                sql="insert into asignaciones (IdTurista, IdCiudad, PresupuestoViaje, UsaTarjeta, Fecha) values ('"+Asignacion.getIdTurista()+"','"+Asignacion.getIdCiudad()+"','"+String.valueOf(Asignacion.getPresupuestoViaje())+"','1','"+Asignacion.getFecha()+"')";
+                                System.out.println(sql);
+                                try{
+                                    ps=con.prepareStatement(sql);
+                                    ps.executeUpdate();
+                                } catch (SQLException e){
+                                    System.out.println(e);
+                                    mensaje="SQLException";
+                                }
+                            }
+                        }
+                    } catch (SQLException e){
+                        System.out.println(e);
+                        mensaje="SQLException";
+                    }
+
+                }else{
+                    System.out.println("Se supera el limite de 5 viajeros por dia");
+                    mensaje= "Se supera el limite de 5 viajeros por dia";
+                }
+            }
         } catch (SQLException e){
             System.out.println(e);
+            mensaje= "SQLException";
         }
-       
-        return false;
+        System.out.println(mensaje);
+        return mensaje;
     }
 
     @Override
-    public boolean edit (Asignaciones Asignacion) {
-        String sql="update asignaciones set IdCiudad='"+Asignacion.getIdCiudad()+"', PresupuestoViaje ='"+Asignacion.getPresupuestoViaje()+"', UsaTarjeta='"+Asignacion.getPresupuestoViaje()+"', Fecha='"+Asignacion.getFecha()+"' where ID='"+Asignacion.getId()+"' and IdTurista='"+Asignacion.getIdTurista()+"'";
+    public String edit (Asignaciones Asignacion) {
+        String mensaje="";
+        String sql="select*from asignaciones where where ID='"+Asignacion.getId()+"'";
+        con=cn.Conectar();
         try{
-            con=cn.Conectar();
             ps=con.prepareStatement(sql);
-            System.out.println(sql);
-            ps.executeUpdate();
-        } catch (SQLException e){
+            rs=ps.executeQuery(sql);
+            while (rs.next()){
+                if((rs.getInt("IdCiudad")==Asignacion.getIdCiudad()) && (rs.getString("Fecha").equals(Asignacion.getFecha()))){
+                    sql="update asignaciones set PresupuestoViaje ='"+Asignacion.getPresupuestoViaje()+"', UsaTarjeta='"+Asignacion.getPresupuestoViaje()+"', Fecha='"+Asignacion.getFecha()+"' where ID='"+Asignacion.getId()+"'";
+                    try{
+                        ps=con.prepareStatement(sql);
+                        System.out.println(sql);
+                        ps.executeUpdate();
+                    } catch (SQLException e){
+                        System.out.println(e);
+                    }
+                }else{
+                    int resultado;
+                    sql="select count(*) from asignaciones where Fecha='"+Asignacion.getFecha()+"'";
+                    try{
+                        ps=con.prepareStatement(sql);
+                        rs=ps.executeQuery(sql);
+                        while (rs.next()){
+                            resultado=rs.getInt("count(*)");
+                            System.out.println(resultado);
+                            if(resultado<=5){
+                                sql="select count(*) from asignaciones where Fecha='"+Asignacion.getFecha()+"' and IdTurista='"+Asignacion.getIdTurista()+"'and IdCiudad='"+Asignacion.getIdCiudad()+"'";
+                                //System.out.println(sql);
+                                try{
+                                    ps=con.prepareStatement(sql);
+                                    rs=ps.executeQuery(sql);
+                                    while (rs.next()){
+                                        resultado=rs.getInt("count(*)");
+                                        System.out.println(resultado);
+                                        if(resultado==1){
+                                            System.out.println("Ya se ha realizado esta reserva");
+                                            mensaje= "Ya se ha realizado esta reserva";
+                                        }else{
+                                            sql="insert into asignaciones (IdTurista, IdCiudad, PresupuestoViaje, UsaTarjeta, Fecha) values ('"+Asignacion.getIdTurista()+"','"+Asignacion.getIdCiudad()+"','"+String.valueOf(Asignacion.getPresupuestoViaje())+"','1','"+Asignacion.getFecha()+"')";
+                                            System.out.println(sql);
+                                            try{
+                                                ps=con.prepareStatement(sql);
+                                                ps.executeUpdate();
+                                            } catch (SQLException e){
+                                                System.out.println(e);
+                                                mensaje="SQLException";
+                                            }
+                                        }
+                                    }
+                                } catch (SQLException e){
+                                    System.out.println(e);
+                                    mensaje="SQLException";
+                                }
+
+                            }else{
+                                System.out.println("Se supera el limite de 5 viajeros por dia");
+                                mensaje= "Se supera el limite de 5 viajeros por dia";
+                            }
+                        }
+                    } catch (SQLException e){
+                        System.out.println(e);
+                        mensaje= "SQLException";
+                    }
+                }
+
+
+        }
+        }catch (SQLException e){
             System.out.println(e);
         }
+
+        
+
        
-        return false;    
+        return mensaje;    
     }
 
     @Override

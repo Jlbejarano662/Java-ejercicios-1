@@ -50,8 +50,8 @@
                         <input type="number" class="form-control form-control-sm" name="PresupuestoViaje" id="PresupuestoViaje" placeholder="Presupuesto ($)"><br>
                         <select name="UsaTarjeta" id="UsaTarjeta" class="custom-select form-control form-control-sm ">
                             <option value="">Pago con Tarjeta</option>
-                            <option value="True">Si</option>
-                            <option value="False">No</option>
+                            <option value="true">Si</option>
+                            <option value="false">No</option>
                         </select><br>                        
                         <input type="text" class="form-control form-control-sm " name="Fecha" id="Fecha" placeholder="Fecha"  onfocus="(this.type='date')" onblur="(this.type='text')"><br>
                         </div><br>

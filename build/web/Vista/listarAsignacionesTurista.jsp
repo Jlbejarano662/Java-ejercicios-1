@@ -28,6 +28,24 @@
                     <h1>Viajes Realizados</h1>
                 </div>
                 <br>
+                    <% 
+                    String mensaje =(String)request.getAttribute("mensaje");
+                    //errores
+                    if (mensaje=="Se supera el limite de 5 viajeros por dia"){
+                    %>
+                        <div class="alert alert-danger">
+                          <strong>¡Error!</strong> Se supera el límite de 5 viajeros por día.
+                        </div>
+                    <%
+                        } else if(mensaje.equals("Ya se ha realizado esta reserva")){
+                    %>
+                        <div class="alert alert-danger">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                          <strong>¡Error!</strong> Ya se ha realizado esta reserva.
+                        </div>                    
+                    <%
+                        }
+                    %>                
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead class="thead-dark">
@@ -86,8 +104,8 @@
                                 </td>
                                 
                                 <td class="tablaEncabezado" >
-                                    <a href="Controlador?accion=editAsignaciones&Id=<%= asignacion.getId() %>" class="btn btn-primary botonesTabla">&nbsp; Editar&nbsp;</a>
-                                    <a href="Controlador?accion=deleteAsignaciones&Id=<%=asignacion.getId() %>"class="btn btn-danger botonesTabla">Eliminar</a>
+                                    <a href="Controlador?accion=editAsignaciones&Id=<%= asignacion.getId()%>" class="btn btn-primary botonesTabla">&nbsp; Editar&nbsp;</a>
+                                    <a href="Controlador?accion=deleteAsignaciones&Id=<%=asignacion.getId()%>"class="btn btn-danger botonesTabla">Eliminar</a>
                                 </td>
                             </tr>
                             <%}%>
@@ -99,7 +117,7 @@
                     <div class="col-sm-4">
                     </div>
                     <div class="col-sm-4">
-                       <a href="Controlador?accion=addAsignaciones&IdTurista=<%= asignacion.getIdTurista() %>" class="btn btn-success btn-block">Agregar viaje</a>
+                       <a href="Controlador?accion=addAsignaciones&IdTurista=<%= IdTurista %>" class="btn btn-success btn-block">Agregar viaje</a>
                     </div>
                     <div class="col-sm-4">
                     </div>

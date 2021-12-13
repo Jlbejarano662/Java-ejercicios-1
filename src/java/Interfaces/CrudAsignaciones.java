@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface CrudAsignaciones {
     public List list (int id, String columna);
-    public boolean add (Asignaciones Asignacion);
-    public boolean edit (Asignaciones Asignacion);
+    public String add (Asignaciones Asignacion);
+    public String edit (Asignaciones Asignacion);
     public boolean delete (int id);    
 }
