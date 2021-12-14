@@ -1,8 +1,4 @@
-<%-- 
-    Document   : Ciudades
-    Created on : 7/12/2021, 11:28:37 AM
-    Author     : Admonsis
---%>
+
 <%@page import="java.util.Iterator"%>
 <%@page import="Modelo.Ciudades"%>
 <%@page import="java.util.List"%>
@@ -23,7 +19,7 @@
             <div class='container'>
                 <div class="col-sm">
                     <div class="align-items-center text-center ">
-                        <h1>Ciudades Registrados</h1>
+                        <h1>Ciudades Registradas</h1>
                     </div><br>
                     <div class="table-responsive">
                         <table class="table table-striped">
@@ -55,7 +51,7 @@
                                 <td class="tablaEncabezado" >
                                     <a href="Controlador?accion=editCiudades&Id=<%= ciudad.getId() %>" class="btn btn-primary botonesTabla">&nbsp; Editar&nbsp;</a>
                                     <a href="Controlador?accion=deleteCiudades&Id=<%= ciudad.getId() %>"class="btn btn-danger botonesTabla">Eliminar</a>
-                                    <a href="Controlador?accion=viajesTuristas&Id=<%= ciudad.getId() %>"class="btn btn-warning botonesTabla ">&nbsp; Viajes&nbsp;</a>                                   
+                                    <a href="Controlador?accion=listarAsignacionesCiudad&Id=<%= ciudad.getId() %>"class="btn btn-warning botonesTabla ">&nbsp; Viajes&nbsp;</a>                                   
                                 </td>
                             </tr>
                             <%}%>
@@ -65,12 +61,11 @@
                     <br>
                     <div>
                         <div class="row">
-                            <div class="col-sm-4">
-                            </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-6">
                                <a href="Controlador?accion=addCiudades" class="btn btn-success btn-block">Agregar ciudad</a>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-6">
+                                <a href="index.jsp" class="btn btn-danger btn-block">Regresar</a><br>
                             </div>
                         </div>
                     </div>

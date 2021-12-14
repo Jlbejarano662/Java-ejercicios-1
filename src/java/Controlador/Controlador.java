@@ -111,7 +111,7 @@ public class Controlador extends HttpServlet {
            request.setAttribute("Id",request.getParameter("Id"));
            acceso=listarAsignacionesTurista;
         }
-        else if(action.equalsIgnoreCase("addAsignaciones")){
+        else if(action.equalsIgnoreCase("addAsignaciones")){           
            request.setAttribute("IdTurista",request.getParameter("IdTurista"));           
            acceso=addAsignaciones; 
         }
@@ -119,11 +119,15 @@ public class Controlador extends HttpServlet {
            request.setAttribute("Id",request.getParameter("Id"));           
            acceso=editAsignaciones; 
         }
-        else if(action.equalsIgnoreCase("deleteAsignaciones")){
-           request.setAttribute("Id",request.getParameter("Id"));           
+        else if(action.equalsIgnoreCase("deleteAsignaciones")){       
             int Id =Integer.parseInt(request.getParameter("Id"));
             asignacionDAO.delete(Id);
+            request.setAttribute("Id",request.getParameter("IdTuristas")); 
             acceso=listarAsignacionesTurista; 
+        }
+        else if(action.equalsIgnoreCase("listarAsignacionesCiudad")){
+           request.setAttribute("Id",request.getParameter("Id"));
+           acceso=listarAsignacionesCiudad;
         }        
         RequestDispatcher Vista=request.getRequestDispatcher(acceso);
         Vista.forward(request, response);
@@ -194,7 +198,8 @@ public class Controlador extends HttpServlet {
         else if(action.equalsIgnoreCase("Agregar viaje")){
            int IdTurista=Integer.parseInt(request.getParameter("IdTurista"));
            int IdCiudad=Integer.parseInt(request.getParameter("IdCiudad"));
-           double PresupuestoViaje=Double.parseDouble(request.getParameter("IdCiudad"));
+           double PresupuestoViaje=Double.parseDouble(request.getParameter("PresupuestoViaje"));
+            System.out.println(PresupuestoViaje);
            String Fecha =request.getParameter("Fecha");
            boolean UsaTarjeta =Boolean.parseBoolean(request.getParameter("UsaTarjeta"));
            asignacion.setIdTurista(IdTurista);
@@ -211,7 +216,7 @@ public class Controlador extends HttpServlet {
            int Id=Integer.parseInt(request.getParameter("Id"));
            int IdTurista=Integer.parseInt(request.getParameter("IdTurista"));
            int IdCiudad=Integer.parseInt(request.getParameter("IdCiudad"));
-           double PresupuestoViaje=Double.parseDouble(request.getParameter("IdCiudad"));
+           double PresupuestoViaje=Double.parseDouble(request.getParameter("PresupuestoViaje"));
            String Fecha =request.getParameter("Fecha");
            boolean UsaTarjeta =Boolean.parseBoolean(request.getParameter("UsaTarjeta"));
            asignacion.setId(Id);

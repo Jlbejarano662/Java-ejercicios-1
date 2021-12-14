@@ -1,8 +1,3 @@
-<%-- 
-    Document   : editAsignaciones
-    Created on : 10/12/2021, 10:53:17 PM
-    Author     : jazmi
---%>
 
 <%@page import="Modelo.Asignaciones"%>
 <%@page import="ModeloDAO.AsignacionesDAO"%>
@@ -69,18 +64,17 @@
                         <input type="number" class="form-control form-control-sm" name="PresupuestoViaje" id="PresupuestoViaje" placeholder="Presupuesto ($)" value="<%= asignacion.getPresupuestoViaje() %>"><br>
                         <select name="UsaTarjeta" id="UsaTarjeta" class="custom-select form-control form-control-sm ">
                             <option value="<%= asignacion.getUsaTarjeta() %>">Pago con Tarjeta</option>
-                            <option value="true">Si</option>
-                            <option value="false">No</option>
+                            <option value="1">Si</option>
+                            <option value="0">No</option>
                         </select><br>                        
                         <input type="text" class="form-control form-control-sm " name="Fecha" id="Fecha" placeholder="Fecha"  onfocus="(this.type='date')" onblur="(this.type='text')" value="<%= asignacion.getFecha() %>"><br>
                         </div><br>
                         <div class="row">
-                            <div class="col-sm-4">
-                            </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-6">
                                 <input type="submit" name="accion"  value="Editar viaje" class="btn btn-success btn-block"><br>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-6">
+                                <a href="Controlador?accion=listarAsignacionesTuristas&Id=<%= asignacion.getIdTurista() %>" class="btn btn-danger btn-block">Regresar</a><br>
                             </div>
                         </div>
                     </form><br>

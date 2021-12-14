@@ -1,8 +1,3 @@
-<%-- 
-    Document   : addTuristas
-    Created on : 7/12/2021, 12:58:52 PM
-    Author     : Admonsis
---%>
 
 <%@page import="Modelo.Turistas"%>
 <%@page import="Modelo.Turistas"%>
@@ -83,12 +78,12 @@
                             </div>
                         </div><br>
                         <div class="row">
-                            <div class="col-sm-4">
-                            </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-6">
                                 <input type="submit" name="accion"  value="Editar Turista" class="btn btn-success btn-block"><br>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-6">
+                                <a href="Controlador?accion=listarTuristas" class="btn btn-danger btn-block">Regresar</a><br>
+                            </div>
                             </div>
                         </div>
                     </form><br>

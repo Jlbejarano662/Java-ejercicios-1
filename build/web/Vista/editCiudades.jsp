@@ -1,8 +1,4 @@
-<%-- 
-    Document   : editCiudades
-    Created on : 10/12/2021, 09:58:23 PM
-    Author     : jazmi
---%>
+
 
 <%@page import="Modelo.Ciudades"%>
 <%@page import="ModeloDAO.CiudadesDAO"%>
@@ -38,12 +34,11 @@
                         <input type="text" class="form-control form-control-sm" name="HotelReservado" id="HotelReservado" placeholder="Hotel más reservado" value="<%= ciudad.getHotelReservado() %>"><br>
                         </div><br>
                         <div class="row">
-                            <div class="col-sm-4">
-                            </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-6">
                                 <input type="submit" name="accion"  value="Editar Ciudad" class="btn btn-success btn-block"><br>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-6">
+                                <a href="Controlador?accion=listarCiudades" class="btn btn-danger btn-block">Regresar</a><br>
                             </div>
                         </div>
                     </form><br>

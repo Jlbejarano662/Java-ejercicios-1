@@ -1,8 +1,4 @@
-<%-- 
-    Document   : listarAsignacionesTurista
-    Created on : 10/12/2021, 10:52:04 PM
-    Author     : jazmi
---%>
+
 
 <%@page import="Modelo.Ciudades"%>
 <%@page import="ModeloDAO.CiudadesDAO"%>
@@ -34,16 +30,19 @@
                     if (mensaje=="Se supera el limite de 5 viajeros por dia"){
                     %>
                         <div class="alert alert-danger">
-                          <strong>¡Error!</strong> Se supera el límite de 5 viajeros por día.
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong>¡Error!</strong> Se supera el límite de 5 viajeros por día.
                         </div>
                     <%
-                        } else if(mensaje.equals("Ya se ha realizado esta reserva")){
+                        mensaje="";
+                        } else if(mensaje=="Ya se ha realizado esta reserva"){
                     %>
                         <div class="alert alert-danger">
-                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                           <button type="button" class="close" data-dismiss="alert">&times;</button>
                           <strong>¡Error!</strong> Ya se ha realizado esta reserva.
                         </div>                    
                     <%
+                        mensaje="";
                         }
                     %>                
                 <div class="table-responsive">
@@ -105,7 +104,7 @@
                                 
                                 <td class="tablaEncabezado" >
                                     <a href="Controlador?accion=editAsignaciones&Id=<%= asignacion.getId()%>" class="btn btn-primary botonesTabla">&nbsp; Editar&nbsp;</a>
-                                    <a href="Controlador?accion=deleteAsignaciones&Id=<%=asignacion.getId()%>"class="btn btn-danger botonesTabla">Eliminar</a>
+                                    <a href="Controlador?accion=deleteAsignaciones&Id=<%=asignacion.getId()%>&IdTuristas=<%=asignacion.getIdTurista()%>"class="btn btn-danger botonesTabla">Eliminar</a>
                                 </td>
                             </tr>
                             <%}%>
@@ -114,12 +113,12 @@
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col-sm-4">
-                    </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                        <a href="Controlador?accion=addAsignaciones&IdTurista=<%= IdTurista %>" class="btn btn-success btn-block">Agregar viaje</a>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
+                        <a href="Controlador?accion=listarTuristas" class="btn btn-danger btn-block">Regresar</a><br>
+
                     </div>
                 </div>
             </div>

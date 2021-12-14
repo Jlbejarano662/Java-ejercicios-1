@@ -1,8 +1,3 @@
-<%-- 
-    Document   : addTuristas
-    Created on : 7/12/2021, 12:58:52 PM
-    Author     : Admonsis
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

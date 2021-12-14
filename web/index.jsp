@@ -1,8 +1,3 @@
-<%-- 
-    Document   : index
-    Created on : 7/12/2021, 11:25:42 AM
-    Author     : Admonsis
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
