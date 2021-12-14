@@ -24,11 +24,7 @@
             <div class="col-sm">
                 <div class="text-center">
         <%
-            AsignacionesDAO dao = new AsignacionesDAO();
-            int IdCiudad = Integer.parseInt((String)request.getAttribute("Id"));        
-            List<Asignaciones>list=dao.list(IdCiudad,"IdCiudad");
-            Iterator<Asignaciones>iter=list.iterator();
-            Asignaciones asignacion=null;
+
         
         %>
 
@@ -47,13 +43,17 @@
                                 <th>Pago con tarejta</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            
-                            <tr>
                                 <%
+                                AsignacionesDAO dao = new AsignacionesDAO();
+                                int IdCiudad = Integer.parseInt((String)request.getAttribute("Id"));        
+                                List<Asignaciones>list=dao.list(IdCiudad,"IdCiudad");
+                                Iterator<Asignaciones>iter=list.iterator();
+                                Asignaciones asignacion=null;
                                 while (iter.hasNext()){
                                     asignacion = iter.next();
-                                %>
+                                %>                        
+                        <tbody>                           
+                            <tr>
                                     <td><%= asignacion.getId() %></td>
                                     <td><%= asignacion.getFecha() %></td>
                                 <%            
